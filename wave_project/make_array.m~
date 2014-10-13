@@ -83,7 +83,7 @@ end
 if(strcmp(type, 'manufactured'))
     for i=1:nx
          for j=1:ny
-            a(i, j)=A*(-i*(nx-i));
+            a(i, j)=-i*(nx-i);
          end
     end
 end

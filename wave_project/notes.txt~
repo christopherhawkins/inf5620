@@ -54,7 +54,7 @@ u_d(i, j)= & q(i+1/2, j)  \frac{u(i+1, j) - u(i, j)}{dx^2} - q(i-1/2, j) \frac{u
 \end{align*}
 Where $u_d$ is the total spacial derivative at grid point $i, j$. Here $q(i \pm 1/2, j)=(q(i \pm 1, j) + q(i, j))/2$ and a simular equivilent in the $j$ direction.
 
-In this program both methods are implemented along with a choice of either standard or isotropic derivatives to be chosen at the users leisure. The code for the program is called {\color{red}'main.cpp'}
+In this program both methods are implemented along with a choice of either standard or isotropic derivatives to be chosen at the users leisure.
 
 \subsection*{Truncation error}
 The spacial traction error of $\frac{\partial}{\partial x} (q(x, y)\frac{\partial}{\partial x} u)$ can be written as follows
@@ -159,7 +159,7 @@ This gives us the relations
 & (c^2 - \omega^2)= -(k_x^2 + k_y^2) \\
 & c = b/2
 \end{align*}
-We can use this exact solution in the same way as for the undamped wave. The damped wave is also included in the script {\color{red}'standing.m'} and is called by simply using a damping coefficient $b>0$.
+We can use this exact solution in the same way as for the undamped wave. The undamped wave is also included in the script {\color{red}'standing.m'} and is called by simply using a damping coefficient $b>0$.
 
 \subsection*{Investigating a physical problem}
 We now choose to use the program to investigate a physical problem. Several predefined geometries are available from the {\color{red}'make\_array.m'} function these are listed below.

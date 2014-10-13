@@ -107,7 +107,11 @@ void grad_dot_q_grad(double **u_d, double **u, double **q){
 
 	for(i=1; i<nx-1; i++)
 		for(j=1; j<ny-1; j++){
-			q_ph_x=(q[i+1][j] + q[i][j])/2;
+			q_ph_x=(q[i+1][j] + q[i][j])/2;			x2=x*x;
+			x3=x*x*x;
+			y=(j+1)*dy;
+			y2=y*y;
+			y3=y*y*y;
 			q_mh_x=(q[i-1][j] + q[i][j])/2;
 
 			q_ph_y=(q[i][j+1] + q[i][j])/2;
@@ -154,6 +158,25 @@ void update(double **u_n, double **u, double **u_t){
 		for(j=0; j<ny; j++){
 			u_t[i][j]=u[i][j];
 			u[i][j]=u_n[i][j];
+		}
+}
+
+//--------------------------------------------------------------------------
+// manufactured solution
+void manufactured_solution(double **u, int t){
+	int i, j;
+	double x, L;
+
+
+	A=1;
+	c2=1./100;
+	c1=(-2.*c2)/(3*nx*dx);
+
+	for(i=0; i<nx; i++)
+		for(j=0; j<ny; j++){
+			x=(i+1)*dx;
+			L=nx*dx;
+			u[i][j]+=(2-x*(L-x))*sin(t);
 		}
 }
 
@@ -305,6 +328,12 @@ int main(int argc, char *argv[]){
 			cubic_test(u_d, t);
 			truncation_error(t_e, g_x, g_y, u, q);
 		}
+		
+		if(test==2){
+		        manufactured_solution(u_d, t);
+			truncation_error(t_e, g_x, g_y, u, q);
+		}
+		
 
 //--------------------------------------------------------------------------
 // integrate in time
